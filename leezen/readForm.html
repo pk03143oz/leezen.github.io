@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <style>
+    table,
+    td {
+      border: 1px solid black;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 將Google Script裡的function抓進來 -->
+  <? var data = getData(); ?>
+  <table>
+    <!-- 每一列的資料 -->
+    <? for (var i=0; i<data.length; i++) { ?>
+    <tr>
+      <!-- 每一欄資料 -->
+      <? for (var j=0; j<data[i].length; j++) { ?>
+      <td>
+        <?= data[i][j] ?>
+      </td>
+      <? } ?>
+    </tr>
+    <? } ?>
+  </table>
+</body>
+
+</html>

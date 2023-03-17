@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>樹林教室-里仁訂購單</title>
+</head>
+
+<body>
+  <!-- <form id="myForm" action="" method="post"> -->
+  <form id="myForm">
+    <h1>樹林教室-里仁訂購單</h1>
+    <p>請確實輸入資料，感謝!!</p>
+    <label for="user_id">請輸入ID:</label>
+    <input id="user_id" type="text" name="user_id" placeholder="請輸入ID" required>
+    <br>
+    <br>
+    <label for="user_name">請輸入姓名:</label>
+    <input id="user_name" type="text" name="user_name" placeholder="請輸入姓名" required>
+    <br>
+    <br>
+    <label for="user_phone">請輸入電話:</label>
+    <input id="user_phone" type="tel" name="user_phone" placeholder="請輸入電話" required pattern="^09[0-9]{8}$">
+    <br>
+    <br>
+    <button id="submitButton">確認訂單</button>
+  </form>
+  <script>
+    //左邊補0
+    function paddingLeft(str, length) {
+      if (str.length >= length)
+        return str;
+      else
+        return paddingLeft("0" + str, length);
+    }
+    //抓輸入的值
+    function getValues() {
+      var userId = document.getElementById("user_id");
+      paddingLeft(userId, 3);
+      var userName = document.getElementById("user_name");
+      var userPhone = document.getElementById("user_phone");
+
+      var rowData = {
+        user_id: userId.value,
+        user_name: userName.value,
+        user_phone: userPhone.value
+      }
+      console.log(rowData);
+      //上傳資料
+      google.script.run.addData(rowData);
+      //清除表單
+      document.getElementById("myForm").reset();
+      //完成後的訊息
+      alert("已上傳完成");
+    }
+    document.getElementById("submitButton").addEventListener("click", getValues);
+
+  </script>
+</body>
+
+</html>
